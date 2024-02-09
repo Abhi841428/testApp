@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
     @Autowired
@@ -43,4 +45,6 @@ public class UserService {
         User user = userRepository.findById(userDto.getId()).orElseThrow();
         return user;
     }
+
+
 }
