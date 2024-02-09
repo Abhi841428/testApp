@@ -33,4 +33,11 @@ public class UserController {
            return  new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
        }
     }
+
+    @GetMapping(value = "/detail")
+    public ResponseEntity<User> detailById(@RequestBody UserDto userDto){
+        User user = userService.detailById(userDto);
+        return  new ResponseEntity<>(user,HttpStatus.FOUND);
+    }
+
 }

@@ -7,6 +7,7 @@ import com.test.payload.UserDto;
 import com.test.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -36,5 +37,10 @@ public class UserService {
 
         }
         return message;
+    }
+
+    public User detailById(UserDto userDto) {
+        User user = userRepository.findById(userDto.getId()).orElseThrow();
+        return user;
     }
 }
