@@ -52,7 +52,17 @@ public class UserService {
     }
 
 
+    public int deleteUser(UserDto userDto) throws Exception{
+
+        User user = userRepository.findById(userDto.getId()).orElseThrow();
+       if(user != null){
+           userRepository.deleteById(userDto.getId());
+           return 1;
+       }
+       else {
+           return 0;
+       }
 
 
-
+    }
 }
