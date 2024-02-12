@@ -1,6 +1,7 @@
 package com.test.service;
 
 import com.test.Exception.ResourceNotFoundException;
+import com.test.entity.Post;
 import com.test.entity.User;
 import com.test.payload.PostDto;
 import com.test.payload.UserDto;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -65,4 +67,20 @@ public class UserService {
 
 
     }
+
+    public void updateUser(UserDto userDto) {
+
+        Long id = userDto.getId();
+
+        User user = userRepository.findById(id);
+
+
+        user.setUserName(userDto.getUserName());
+        user.setPassword(userDto.getPassword());
+
+        userRepository.save(user);
+        return user;
+    }
+
+}
 }
