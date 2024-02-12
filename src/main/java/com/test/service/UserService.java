@@ -68,7 +68,7 @@ public class UserService {
 
     }
 
-    public void updateUser(UserDto userDto) {
+    public User updateUser(UserDto userDto) {
 
         Long id = userDto.getId();
 
