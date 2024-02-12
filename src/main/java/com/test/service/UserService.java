@@ -72,7 +72,7 @@ public class UserService {
 
         Long id = userDto.getId();
 
-        User user = userRepository.findById(id);
+        User user = userRepository.findById(id).orElseThrow();
 
 
         user.setUserName(userDto.getUserName());
@@ -83,4 +83,4 @@ public class UserService {
     }
 
 }
-}
+
