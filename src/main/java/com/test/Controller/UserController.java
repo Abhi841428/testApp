@@ -2,7 +2,6 @@ package com.test.Controller;
 
 import com.test.Exception.ResourceNotFoundException;
 import com.test.entity.User;
-import com.test.payload.PostDto;
 import com.test.payload.UserDto;
 import com.test.service.UserService;
 
@@ -48,6 +47,22 @@ public class UserController {
         return  userList;
     }
 
-
+  @DeleteMapping(value = "/delete")
+    public String deleteUser(@RequestBody UserDto userDto){
+        String message =" ";
+        try {
+            int deletedRow = userService.deleteUser(userDto);
+            if(deletedRow>0){
+                message ="User Deeleted successfully";
+            }
+            else {
+                throw new Exception();
+            }
+        }
+        catch (Exception e){
+            message="User Not found with id" + "-"+ userDto.getId();
+        }
+      return  message;
+  }
 
 }
