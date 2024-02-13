@@ -1,9 +1,11 @@
 package com.test.Controller;
 
 
+import com.test.payload.TextMessageDto;
 import com.test.service.TextMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,8 +23,8 @@ public class TextMessageController {
 //    }
 
     @PostMapping("/text")
-    public void sendEmail() {
-        textMessageService.sendSms("+918709652386","Just testing");
+    public void sendEmail(@RequestBody TextMessageDto dto) {
+        textMessageService.sendSms("+91"+dto.getToNumber(),dto.getTextBody());
 
     }
 }
