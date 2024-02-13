@@ -85,16 +85,16 @@ public class UserService {
 
         }
 
-        if(updateDto.getPassword().equals(user.getUserName())){
+        if(!updateDto.getPassword().equals(user.getPassword())){
             message="Invalid Username and password";
 
             return message;
         }
 
+            user.setUserName(updateDto.getNewUserName());
+            user.setPassword(updateDto.getNewPassword());
 
 
-        user.setUserName (updateDto.getUserName());
-        user.setPassword(updateDto.getPassword());
 
         userRepository.save(user);
         return message;
