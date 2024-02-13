@@ -1,7 +1,6 @@
 package com.test.Controller;
 
 
-import com.test.Exception.ResourceNotFoundException;
 import com.test.entity.Post;
 import com.test.payload.PostDto;
 import com.test.service.PostService;

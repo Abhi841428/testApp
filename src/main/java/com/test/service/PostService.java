@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import java.io.FileNotFoundException;
 import java.util.List;
 
 @Service
@@ -27,7 +26,8 @@ public class PostService {
     public PostDto createPost(PostDto postDto) {
 
         Post post = mapToEntity(postDto);
-        postRepository.save(post);
+        Post savedData = postRepository.save(post);
+        postDto.setId(savedData.getId());
         return postDto;
     }
 

@@ -1,23 +1,23 @@
 package com.test.service;
 
 import com.test.Exception.ResourceNotFoundException;
-import com.test.entity.Post;
 import com.test.entity.User;
-import com.test.payload.PostDto;
+import com.test.payload.UpdateDto;
 import com.test.payload.UserDto;
 import com.test.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+    private String newPassword;
+
+
     public User signUp(UserDto userDto) {
         User user = new User();
         user.setUserName(userDto.getUserName());
@@ -68,18 +68,36 @@ public class UserService {
 
     }
 
-    public User updateUser(UserDto userDto) {
+    public String updateUser(UpdateDto updateDto) {
 
-        Long id = userDto.getId();
+        String message = "";
 
-        User user = userRepository.findById(id).orElseThrow();
+        User user = userRepository.findByuserName(updateDto.getUserName());
+
+        if(user == null){
+            message = "User Not Found";
+            return message;
+
+        }
+        if(updateDto.getPassword() == null){
+            message = "Invalid Password";
+            return message;
+
+        }
+
+        if(updateDto.getPassword().equals(user.getUserName())){
+            message="Invalid Username and password";
+
+            return message;
+        }
 
 
-        user.setUserName(userDto.getUserName());
-        user.setPassword(userDto.getPassword());
+
+        user.setUserName (updateDto.getUserName());
+        user.setPassword(updateDto.getPassword());
 
         userRepository.save(user);
-        return user;
+        return message;
     }
 
 }
