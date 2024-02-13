@@ -7,6 +7,11 @@ public class UpdateDto {
 
 
     String userName;
+    String newUserName;
+    String Password;
+    String newPassword;
+
+
 
     public String getUserName() {
         return userName;
@@ -15,7 +20,6 @@ public class UpdateDto {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-    String newUserName;
 
     public String getNewUserName() {
         return newUserName;
@@ -25,8 +29,6 @@ public class UpdateDto {
         this.newUserName = newUserName;
     }
 
-    String Password;
-
     public String getPassword() {
         return Password;
     }
@@ -35,8 +37,6 @@ public class UpdateDto {
         this.Password = Password;
     }
 
-
-    String newPassword;
     public String getNewPassword() {
         return newPassword;
     }
