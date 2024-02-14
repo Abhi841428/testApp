@@ -1,6 +1,6 @@
 package com.test.Controller;
 
-import com.test.payload.EmailDetails;
+import com.test.payload.EmailSendDto;
 import com.test.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +15,7 @@ public class EmailController {
   private EmailService emailService;
     @PostMapping("/sendMail")
     public String
-    sendMail(@RequestBody EmailDetails details)
+    sendMail(@RequestBody EmailSendDto details)
     {
         String status
                 = emailService.sendSimpleMail(details);

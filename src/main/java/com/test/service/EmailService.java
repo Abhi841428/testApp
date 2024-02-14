@@ -1,6 +1,6 @@
 package com.test.service;
 
-import com.test.payload.EmailDetails;
+import com.test.payload.EmailSendDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -12,7 +12,7 @@ public class EmailService {
     @Autowired
     private JavaMailSender javaMailSender;
     @Value("${spring.mail.username}") private String sender;
-    public String sendSimpleMail(EmailDetails details)
+    public String sendSimpleMail(EmailSendDto details)
     {
 
         try {

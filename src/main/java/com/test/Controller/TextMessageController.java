@@ -1,7 +1,6 @@
 package com.test.Controller;
 
 
-import com.test.payload.EmailDetails;
 import com.test.payload.TextMessageDto;
 import com.test.service.TextMessageService;
 import org.springframework.beans.factory.annotation.Autowired;

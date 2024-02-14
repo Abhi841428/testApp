@@ -3,7 +3,7 @@ package com.test.payload;
 import lombok.Data;
 
 @Data
-public class UpdateDto {
+public class UserUpdateDto {
 
 
     String userName;

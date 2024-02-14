@@ -2,7 +2,7 @@ package com.test.service;
 
 import com.test.Exception.ResourceNotFoundException;
 import com.test.entity.User;
-import com.test.payload.UpdateDto;
+import com.test.payload.UserUpdateDto;
 import com.test.payload.UserDto;
 import com.test.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,31 +68,31 @@ public class UserService {
 
     }
 
-    public String updateUser(UpdateDto updateDto) {
+    public String updateUser(UserUpdateDto userUpdateDto) {
 
         String message = "";
 
-        User user = userRepository.findByuserName(updateDto.getUserName());
+        User user = userRepository.findByuserName(userUpdateDto.getUserName());
 
         if(user == null){
             message = "User Not Found";
             return message;
 
         }
-        if(updateDto.getPassword() == null){
+        if(userUpdateDto.getPassword() == null){
             message = "Invalid Password";
             return message;
 
         }
 
-        if(!updateDto.getPassword().equals(user.getPassword())){
+        if(!userUpdateDto.getPassword().equals(user.getPassword())){
             message="Invalid Username and password";
 
             return message;
         }
 
-            user.setUserName(updateDto.getNewUserName());
-            user.setPassword(updateDto.getNewPassword());
+            user.setUserName(userUpdateDto.getNewUserName());
+            user.setPassword(userUpdateDto.getNewPassword());
 
 
 

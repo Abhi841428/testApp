@@ -2,7 +2,7 @@ package com.test.Controller;
 
 import com.test.Exception.ResourceNotFoundException;
 import com.test.entity.User;
-import com.test.payload.UpdateDto;
+import com.test.payload.UserUpdateDto;
 import com.test.payload.UserDto;
 import com.test.service.UserService;
 
@@ -67,8 +67,8 @@ public class UserController {
   }
 
   @PutMapping(value = "/update")
-    public ResponseEntity<String> updateUser(@RequestBody UpdateDto updateDto) {
-      String message = userService.updateUser(updateDto);
+    public ResponseEntity<String> updateUser(@RequestBody UserUpdateDto userUpdateDto) {
+      String message = userService.updateUser(userUpdateDto);
       return  new ResponseEntity<>(message,HttpStatus.FOUND);
 
 
