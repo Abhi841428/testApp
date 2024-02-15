@@ -43,6 +43,8 @@ public class UserService {
 
         String body3 ="<html><head><style>" +
                 "body { background-color: #f2f2f2; }" + // Change the background color to your desired color
+                "h2 {color:#ed3109; } "     +
+                "p {color:#1349c1; } "     +
                 "</style></head><body>" +
                 "<h2>Welcome to Java Test App</h2>" +
                 "<p><strong>YOU CAN USE THIS CREDENTIALS FOR LOGIN:-</strong> </p>" +
