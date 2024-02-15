@@ -21,4 +21,10 @@ public class EmailController {
 
         return status;
     }
+
+    @PostMapping("/send-email")
+    public String sendModifiedEmail(@RequestBody EmailSendDto details) {
+        emailService.sendEmail(details.getRecipient(), details.getSubject(), details.getMsgBody());
+        return "Email sent successfully!";
+    }
 }

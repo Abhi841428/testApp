@@ -25,10 +25,35 @@ public class UserService {
 
 
     public String signUp(UserDto userDto) {
-        String msgBody =  "Welcome to Java Test App\n\n"
-                + "You are successfully registered.\n\n"
-                + "Your Username: " + userDto.getUserName() + "\n"
-                + "Password: " + userDto.getPassword();
+//        String msgBody =  "Welcome to Java Test App\n\n"
+//                + "You are successfully registered.\n\n"
+//                + "Your Username: " + userDto.getUserName() + "\n"
+//                + "Password: " + userDto.getPassword();
+//
+//        String body2= "<html><body>" +
+//                "<h2>Welcome to Java Test App</h2>" +
+//                "<p>You are successfully registered.</p>" +
+//                "<p><strong>Your Username:</strong> " + userDto.getUserName()+ "</p>" +
+//                "<p><strong>Password:</strong> " + userDto.getPassword() + "</p>" +
+//                "<p>Regards,<br/>" +
+//                "JAVA TEST APP" +
+//                "</p>" +
+//                "<img src='cid:logo' width='200px'/>" +
+//                "</body></html>";
+
+        String body3 ="<html><head><style>" +
+                "body { background-color: #f2f2f2; }" + // Change the background color to your desired color
+                "</style></head><body>" +
+                "<h2>Welcome to Java Test App</h2>" +
+                "<p><strong>YOU CAN USE THIS CREDENTIALS FOR LOGIN:-</strong> </p>" +
+                "<p><strong>Your Username:</strong> " + userDto.getUserName() + "</p>" +
+                "<p><strong>Password:</strong> " + userDto.getPassword() + "</p>" +
+                "<p>Regards,<br/>" +
+                "JAVA TESTING APP.\n " +
+                "SRISTI SINGH"+
+                "</p>" +
+                "<img src='cid:logo' width='200px'/>" +
+                "</body></html>";
         String subject =" JAVA TEST APP REGISTRATION";
         try {
             User user = new User();
@@ -36,11 +61,13 @@ public class UserService {
             user.setPassword(userDto.getPassword());
             user.setEmail(userDto.getEmail());
             userRepository.save(user);
+
+
             EmailSendDto email = new EmailSendDto();
             email.setRecipient(user.getEmail());
-            email.setMsgBody(msgBody);
+            email.setMsgBody(body3);
             email.setSubject(subject);
-            emailController.sendMail(email);
+            emailController.sendModifiedEmail(email);
         }
         catch (DataIntegrityViolationException e){
            return " email already Registered";
