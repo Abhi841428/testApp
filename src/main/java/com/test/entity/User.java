@@ -25,7 +25,6 @@ public class User {
     private String password;
 
     @Column(name = "email",unique = true)
-    @Email(message = "Invalid email format")
     private String email;
 
     public String getEmail() {
