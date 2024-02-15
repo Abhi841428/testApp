@@ -1,11 +1,15 @@
 package com.test.service;
 
+import com.test.Controller.EmailController;
+import com.test.Exception.DuplicateEmailException;
 import com.test.Exception.ResourceNotFoundException;
 import com.test.entity.User;
+import com.test.payload.EmailSendDto;
 import com.test.payload.UserUpdateDto;
 import com.test.payload.UserDto;
 import com.test.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -15,14 +19,33 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
-    private String newPassword;
+    @Autowired
+    private EmailController emailController;
 
 
-    public User signUp(UserDto userDto) {
-        User user = new User();
-        user.setUserName(userDto.getUserName());
-        user.setPassword(userDto.getPassword());
-        return userRepository.save(user);
+
+    public String signUp(UserDto userDto) {
+        String msgBody =  "Welcome to Java Test App\n\n"
+                + "You are successfully registered.\n\n"
+                + "Your Username: " + userDto.getUserName() + "\n"
+                + "Password: " + userDto.getPassword();
+        String subject =" JAVA TEST APP REGISTRATION";
+        try {
+            User user = new User();
+            user.setUserName(userDto.getUserName());
+            user.setPassword(userDto.getPassword());
+            user.setEmail(userDto.getEmail());
+            userRepository.save(user);
+            EmailSendDto email = new EmailSendDto();
+            email.setRecipient(user.getEmail());
+            email.setMsgBody(msgBody);
+            email.setSubject(subject);
+            emailController.sendMail(email);
+        }
+        catch (DataIntegrityViolationException e){
+           return " email already Registered";
+        }
+        return "User registered successfully";
     }
 
     public String login(UserDto userDto) throws ResourceNotFoundException{

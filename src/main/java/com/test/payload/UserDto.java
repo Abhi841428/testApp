@@ -8,6 +8,15 @@ public class UserDto {
          Long id;
          String userName;
          String password;
+          String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Long getId() {
         return id;

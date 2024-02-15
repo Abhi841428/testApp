@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Email;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,10 +24,17 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "email",unique = true)
+    @Email(message = "Invalid email format")
+    private String email;
 
+    public String getEmail() {
+        return email;
+    }
 
-
-
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Long getId() {
         return id;

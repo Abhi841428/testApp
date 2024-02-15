@@ -1,5 +1,6 @@
 package com.test.Controller;
 
+import com.test.Exception.DuplicateEmailException;
 import com.test.Exception.ResourceNotFoundException;
 import com.test.entity.User;
 import com.test.payload.UserUpdateDto;
@@ -7,10 +8,13 @@ import com.test.payload.UserDto;
 import com.test.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,8 +24,12 @@ public class UserController {
     private UserService userService;
 
     @PostMapping(value = "/signUp")
-    public ResponseEntity<User> createPost(@RequestBody UserDto userDto){
-        return new ResponseEntity<>(userService.signUp(userDto), HttpStatus.CREATED);
+    public ResponseEntity<String> createPost( @RequestBody UserDto userDto){
+
+
+            return new ResponseEntity<>(userService.signUp(userDto), HttpStatus.CREATED);
+
+
     }
 
     @GetMapping(value = "/login")

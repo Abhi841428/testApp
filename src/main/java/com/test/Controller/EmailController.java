@@ -17,8 +17,7 @@ public class EmailController {
     public String
     sendMail(@RequestBody EmailSendDto details)
     {
-        String status
-                = emailService.sendSimpleMail(details);
+        String status = emailService.sendSimpleMail(details);
 
         return status;
     }
