@@ -1,6 +1,7 @@
 package com.test.service;
 
 import com.test.Controller.EmailController;
+import com.test.CustumUtil.Util;
 import com.test.Exception.DuplicateEmailException;
 import com.test.Exception.ResourceNotFoundException;
 import com.test.entity.User;
@@ -58,6 +59,10 @@ public class UserService {
                 "</body></html>";
         String subject =" JAVA TEST APP REGISTRATION";
         try {
+
+            if(!Util.isValidEmail(userDto.getEmail())){
+                return "please Enter Valid Email Id";
+            }
             User user = new User();
             user.setUserName(userDto.getUserName());
             user.setPassword(userDto.getPassword());
